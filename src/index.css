@@ -1,0 +1,364 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 2% 9%; /* Army Black #171616 */
+    --foreground: 0 0% 95%;
+
+    --card: 0 2% 11%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 2% 11%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 6 93% 64%; /* Algerian Coral #F95C4B */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 2% 15%;
+    --secondary-foreground: 6 93% 64%;
+
+    --muted: 0 2% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 0 2% 15%;
+    --accent-foreground: 6 93% 64%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 2% 18%;
+    --input: 0 2% 18%;
+    --ring: 6 93% 64%;
+
+    --radius: 1.25rem;
+
+    --sidebar-background: 0 2% 8%;
+    --sidebar-foreground: 0 0% 60%;
+    --sidebar-primary: 6 93% 64%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 2% 12%;
+    --sidebar-accent-foreground: 6 93% 64%;
+    --sidebar-border: 0 2% 15%;
+    --sidebar-ring: 6 93% 64%;
+
+    /* Custom tokens */
+    --surface-elevated: 0 2% 14%;
+    --success: 142 70% 45%;
+    --warning: 38 90% 55%;
+    --info: 6 93% 64%;
+    --glass-border: 0 2% 20%;
+    --glass-bg: 0 2% 11%;
+  }
+
+  .light {
+    --background: 220 20% 97%;
+    --foreground: 224 40% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 40% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 40% 10%;
+
+    --primary: 244 80% 61%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 174 84% 40%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 15% 45%;
+
+    --accent: 220 15% 92%;
+    --accent-foreground: 224 40% 10%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 244 80% 61%;
+
+    --sidebar-background: 220 20% 95%;
+    --sidebar-foreground: 220 15% 45%;
+    --sidebar-primary: 244 80% 61%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 92%;
+    --sidebar-accent-foreground: 224 40% 10%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 244 80% 61%;
+
+    --surface-elevated: 220 15% 95%;
+    --success: 160 60% 38%;
+    --warning: 38 90% 48%;
+    --info: 200 80% 48%;
+    --glass-border: 220 15% 85%;
+    --glass-bg: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Inter', sans-serif;
+  }
+
+  code,
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-card border border-border/50 backdrop-blur-sm;
+  }
+
+  .glass-card-hover {
+    @apply glass-card hover:border-border transition-colors;
+  }
+
+  .status-dot {
+    @apply w-2 h-2 rounded-full inline-block;
+  }
+
+  .status-online {
+    @apply bg-[hsl(var(--success))];
+  }
+
+  .status-warning {
+    @apply bg-[hsl(var(--warning))];
+  }
+
+  .status-offline {
+    @apply bg-destructive;
+  }
+
+  .shadow-primary-glow {
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.4);
+  }
+
+  .shadow-ambient {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .animate-dropdown-reveal {
+    animation: dropdownReveal 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Sliding Login Animation */
+  .login-container {
+    background-color: hsl(var(--card));
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    @apply border border-border/50;
+  }
+
+  .login-container p {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+  }
+
+  .login-container span {
+    font-size: 12px;
+  }
+
+  .login-container a {
+    color: hsl(var(--foreground));
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+  }
+
+  .login-container button.ghost {
+    background-color: transparent;
+    border-color: #fff;
+  }
+
+  .login-container form {
+    background-color: hsl(var(--card));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+  }
+
+  .login-container input {
+    background-color: hsl(var(--muted));
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+  }
+
+  .form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+  }
+
+  .employee-signin {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+  }
+
+  .login-container.active .employee-signin {
+    transform: translateX(100%);
+  }
+
+  .admin-signin {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .login-container.active .admin-signin {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+  }
+
+  @keyframes move {
+
+    0%,
+    49.99% {
+      opacity: 0;
+      z-index: 1;
+    }
+
+    50%,
+    100% {
+      opacity: 1;
+      z-index: 5;
+    }
+  }
+
+  .toggle-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+  }
+
+  .login-container.active .toggle-container {
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+  }
+
+  .toggle {
+    background-color: hsl(var(--primary));
+    height: 100%;
+    background: linear-gradient(to right, hsl(var(--primary)), hsl(6 93% 50%));
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+  }
+
+  .login-container.active .toggle {
+    transform: translateX(50%);
+  }
+
+  .toggle-panel {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+  }
+
+  .toggle-left {
+    transform: translateX(-200%);
+  }
+
+  .login-container.active .toggle-left {
+    transform: translateX(0);
+  }
+
+  .toggle-right {
+    right: 0;
+    transform: translateX(0);
+  }
+
+  .login-container.active .toggle-right {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes dropdownReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
