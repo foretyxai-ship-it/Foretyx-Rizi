@@ -17,12 +17,20 @@ export default function AdminAnalytics() {
     <div className="space-y-6 animate-fade-in p-2">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold tracking-tight text-foreground">Security Analytics</h1>
-        <div className="flex bg-muted rounded-lg p-0.5 border border-border">
+        <div className="relative grid grid-cols-3 bg-muted rounded-lg p-1 border border-border isolate w-[180px]">
+          <div 
+            className="absolute top-1 bottom-1 bg-card rounded-md shadow-sm transition-transform duration-300 ease-out -z-10"
+            style={{ 
+              left: '0.25rem',
+              width: 'calc((100% - 0.5rem) / 3)',
+              transform: `translateX(calc(${['7d', '30d', '90d'].indexOf(range)} * 100%))` 
+            }}
+          />
           {['7d', '30d', '90d'].map(r => (
             <button
               key={r}
               onClick={() => setRange(r)}
-              className={`px-4 py-1.5 text-xs font-medium rounded-md transition ${range === r ? 'bg-card text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}
+              className={`text-center py-1.5 text-xs rounded-md transition-colors duration-300 ${range === r ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'}`}
             >
               {r.toUpperCase()}
             </button>

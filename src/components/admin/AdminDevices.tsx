@@ -58,12 +58,6 @@ export default function AdminDevices() {
             )}
           </p>
         </div>
-        {error && (
-          <div className="flex items-center gap-2 bg-destructive/10 text-destructive text-xs px-3 py-1 rounded-full border border-destructive/20 animate-pulse">
-            <Info className="w-3 h-3" />
-            {error}
-          </div>
-        )}
       </div>
 
       <div className="flex items-center gap-3">
@@ -76,9 +70,23 @@ export default function AdminDevices() {
             className="w-full h-9 pl-9 pr-3 rounded-md bg-muted border border-border text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           />
         </div>
-        <div className="flex bg-muted rounded-lg p-0.5">
+        <div className="relative grid grid-cols-3 bg-muted rounded-lg p-1 isolate w-[240px]">
+          <div 
+            className="absolute top-1 bottom-1 bg-card rounded-md shadow-sm transition-transform duration-300 ease-out -z-10"
+            style={{ 
+              left: '0.25rem',
+              width: 'calc((100% - 0.5rem) / 3)',
+              transform: `translateX(calc(${['all', 'online', 'offline'].indexOf(filter)} * 100%))` 
+            }}
+          />
           {(['all', 'online', 'offline'] as const).map(f => (
-            <button key={f} onClick={() => setFilter(f)} className={`px-4 py-2 text-sm rounded-md capitalize transition ${filter === f ? 'bg-card text-foreground shadow-sm' : 'text-muted-foreground'}`}>{f}</button>
+            <button 
+              key={f} 
+              onClick={() => setFilter(f)} 
+              className={`py-1.5 text-sm text-center rounded-md capitalize transition-colors duration-300 ${filter === f ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'}`}
+            >
+              {f}
+            </button>
           ))}
         </div>
       </div>
@@ -104,9 +112,9 @@ export default function AdminDevices() {
                 </tr>
               ))
             ) : filtered.length === 0 ? (
-              <tr><td colSpan={5} className="text-center py-20 text-muted-foreground">
-                <Laptop className="w-10 h-10 mx-auto mb-3 opacity-20" />
-                <p className="text-sm">No devices found matching your filters.</p>
+              <tr><td colSpan={5} className="text-center h-[50vh] text-muted-foreground">
+                <Laptop className="w-16 h-16 mx-auto mb-4 opacity-20" />
+                <p className="text-base">No devices found matching your filters.</p>
               </td></tr>
             ) : (
               filtered.map(d => (

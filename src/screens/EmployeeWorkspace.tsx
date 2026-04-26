@@ -101,7 +101,7 @@ export default function EmployeeWorkspace() {
   }, {});
 
   return (
-    <div className="h-screen flex bg-background">
+    <div className="h-screen w-full flex bg-background overflow-hidden">
       {/* Left Sidebar */}
       <div className="w-[260px] flex flex-col border-r border-border bg-card shrink-0">
         <div className="p-4 border-b border-border">

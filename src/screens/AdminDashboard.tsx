@@ -43,7 +43,7 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="h-screen flex bg-background">
+    <div className="h-screen w-full flex bg-background overflow-hidden">
       {/* Sidebar */}
       <div className="w-[220px] flex flex-col border-r border-border bg-card shrink-0">
         <div className="p-4 border-b border-border flex flex-col items-center">
